@@ -1,0 +1,50 @@
+﻿@model TableNames
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<h4>Tables</h4>
+<hr/>
+@*<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <partial name="_ConnectionStringFormGroupPartial" for="ConnectionString" />
+        </form>
+    </div>
+</div>*@
+
+
+
+
+
+@*Display the retrieved table names, if available*@
+@if (Model != null && Model.Names != null)
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                Table Name
+            </th>
+
+        </tr>
+        </thead>
+        <tbody>
+        @*Show the column name and the .NET type*@
+        @foreach (var tableName in Model.Names)
+        {
+            <tr>
+
+                <td>
+                    @Html.Raw(tableName)
+                </td>
+
+            </tr>
+        }
+        </tbody>
+    </table>
+}

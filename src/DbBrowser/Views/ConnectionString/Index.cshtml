@@ -1,0 +1,23 @@
+﻿@model ConnectionStringModel
+@{
+    ViewData["Title"] = "ConnectionStringProvider";
+}
+
+<h2>ConnectionStringProvider</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="StoreAndShowTables" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <partial name="_ConnectionStringFormGroupPartial" for="@Model" />
+            <div class="form-group">
+                <input type="submit" value="Store and show tables" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
