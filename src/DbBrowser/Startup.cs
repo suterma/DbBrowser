@@ -31,6 +31,15 @@ namespace DbBrowser
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            // Configure the use of sessions
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                // Set a short timeout for easy testing.
+                //options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -51,6 +60,8 @@ namespace DbBrowser
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseSession();
+
 
             app.UseMvc(routes =>
             {
